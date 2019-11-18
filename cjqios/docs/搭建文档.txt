@@ -1,0 +1,44 @@
+1、系统要求 CentOS Linux 7.6 nginx 1.14 mysql 5.6   php7.1 
+
+服务器必需为阿里云 + OSS + 七牛
+
+<1> 阿里云用来布置php+python 
+<2> OSS用来存储签名后的IPA
+<3> 七牛云用来存储用户普通分发IPA+APK
+
+
+安装步骤
+
+1、安装CentOS Linux 7.6
+2、安装 FinalShell 链接服务器工具
+3、FinalShell链接到远程服务器 如：201.201.201.1
+
+4、第一安装宝塔 文档下载链接 https://www.bt.cn/bbs/thread-1186-1-1.html
+
+ Centos安装命令：
+yum install -y wget && wget -O install.sh http://download.bt.cn/install/install.sh && sh install.sh
+
+5、用notepad++ 替换源码里的www.baidu.com批量替换成自己的域名，共24个地方
+
+6、打开宝塔管理界面。登陆宝塔安装
+   
+   nginx 1.14 
+   mysql 5.6   
+   php7.1
+
+7、绑定域名到：七牛 及OSS 存储
+8、设置 php7.1管理工具-php拓展-安装fileinfo  禁用函数 删除 exec
+9、设置没网站上传文件大小，配置修改： max_input_time 60000  memory_limit 200
+
+10、安装SSL证书 并将证书内容复制到CRT，PEM文件  
+11、阿里云放开443 8888 888 80 等端口
+
+
+
+
+注：开启debug模式
+public/index.php
+define("APP_DEBUG", true);
+
+删除缓存
+data/runtime 
